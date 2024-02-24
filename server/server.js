@@ -11,7 +11,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 let notes= [];
+
 //Building the API
+
 //POST:
 app.post('/notes', (req,res) => {
     const body = req.body;
@@ -21,6 +23,10 @@ app.post('/notes', (req,res) => {
     res.send(true);
 });
 
+//GET: 
+app.get('/notes', (req,res) => {
+    res.send(notes);
+})
 
 const port = 3000;
 
