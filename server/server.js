@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 //Building the API
 
 //POST:
-app.post('/notes', (req,res) => {
+app.post('/notes/add', (req,res) => {
     const body = req.body;
     console.log("BODY: ", body);
     db.addNote(body)
@@ -31,9 +31,36 @@ app.post('/notes', (req,res) => {
 });
 
 //GET: 
-app.get('/notes', (req,res) => {
-    res.send(notes);
+app.get('/notes/all', (req,res) => {
+    db.getNotes()
+    .then(data => {
+        res.send(data);
+    })
+    .catch(error => {
+        res.status(500).send(error);
+    });
 })
+
+//GET By Id
+app.get('/note/:id',(req,res) => {
+    const {id} = req.params;
+    db.getNoteById(id)
+    .then(data => {
+        if(!data)
+            {
+                res.status(404).send("Note Id doesn't exist"+id);
+            }
+            else
+            {
+                res.send(data);
+            }
+    })
+    .catch(err => {
+        res.status(500).send(err);
+    })
+})
+
+
 
 const port = 3000;
 
