@@ -16,7 +16,8 @@ let notes= [];
 app.post('/notes', (req,res) => {
     const body = req.body;
     console.log("BODY: ", body);
-    notes.push(body);
+    notes.push(body.title);
+    console.log("NOTES: " , notes);
     res.send(true);
 });
 
