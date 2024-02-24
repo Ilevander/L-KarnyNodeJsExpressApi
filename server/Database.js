@@ -58,6 +58,20 @@ class Database {
             });
          })
     }
+
+    updateNote(note){
+        return new Promise((resolve,reject) => {
+            note["updatedDate"] = new Date();
+            Note.findByIdAndUpdate(note["_id"] , note)
+            .then(data => {
+                console.log(data);
+                resolve(data);
+            })
+            .catch(err => {
+                reject(err);
+            });
+        });
+    }
 }
 
 module.exports = Database;
