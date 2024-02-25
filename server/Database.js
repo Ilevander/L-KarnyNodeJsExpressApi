@@ -72,6 +72,18 @@ class Database {
             });
         });
     }
+
+    deleteNote(id){
+        return new Promise((resolve,reject) => { 
+            Note.findByIdAndDelete(id)
+            .then(data => {
+                resolve(data);
+            })
+            .catch(err => {
+                reject(err);
+            });
+        });
+    }
 }
 
 module.exports = Database;

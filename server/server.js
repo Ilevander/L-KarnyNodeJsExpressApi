@@ -78,6 +78,25 @@ app.put('/note/update',(req,res) => {
     })
 })
 
+//DELETE 
+app.delete('/note/delete/:id',(req,res) => {
+    const {id} = req.params;
+    db.deleteNote(id)
+    .then(data => {
+        if(!data)
+            {
+                res.status(404).send("Note Id doesn't exist"+ id);
+            }
+            else
+            {
+                res.send(data);
+            }
+    })
+    .catch(err => {
+        res.status(500).send(err);
+    })
+})
+
 
 //HANDLING PORT-Server
 const port = 3000;
