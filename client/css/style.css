@@ -4,6 +4,7 @@
 
 body {
   text-align: center;
+  background-color: #F8EDE3;
 }
 
 h1 {
@@ -19,7 +20,7 @@ h1 {
 }
 
 .navigation-bar {
-  background-color: rgb(51, 51, 51);
+  background-color: #798777;
   height: 80px;
   width: 100%;
   margin-bottom: 20px;
