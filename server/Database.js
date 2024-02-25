@@ -84,6 +84,19 @@ class Database {
             });
         });
     }
+
+    getNotesByTitle(noteTitle){
+        return new Promise((resolve,reject) => { 
+            const query = {title: {$regex: new RegExp(noteTitle, 'i')} };
+            Note.find(query)
+            .then(data => {
+                resolve(data);
+            })
+            .catch(err => {
+                reject(err);
+            });
+        }); 
+    }
 }
 
 module.exports = Database;

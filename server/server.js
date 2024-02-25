@@ -32,13 +32,27 @@ app.post('/notes/add', (req,res) => {
 
 //GET: 
 app.get('/notes/all', (req,res) => {
-    db.getNotes()
-    .then(data => {
-        res.send(data);
-    })
-    .catch(error => {
-        res.status(500).send(error);
-    });
+    const {title} = req.query;//to make search by title of note
+    if(title)//if title exist 
+        {
+            db.getNotesByTitle(title)
+                .then(data => {
+                    res.send(data);
+                })
+                .catch(error => {
+                    res.status(500).send(error);
+                });
+        }
+        else
+            {
+                db.getNotesByTitle(title)
+                .then(data => {
+                    res.send(data);
+                })
+                .catch(error => {
+                    res.status(500).send(error);
+                });
+            }
 })
 
 //GET By Id
